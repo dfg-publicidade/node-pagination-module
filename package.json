@@ -11,6 +11,7 @@
         "test:all": "npm run test test/**/*.spec.ts test/**/**/*.spec.ts test/**/**/**/*.spec.ts"
     },
     "dependencies": {
+        "@dfgpublicidade/node-app-module": "git+https://github.com/dfg-publicidade/node-app-module.git",
         "@dfgpublicidade/node-result-module": "git+ssh://git@github.com/dfg-publicidade/node-result-module.git"
     },
     "devDependencies": {

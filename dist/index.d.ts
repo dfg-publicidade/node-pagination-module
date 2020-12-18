@@ -1,8 +1,9 @@
+import App from '@dfgpublicidade/node-app-module';
 import Result from '@dfgpublicidade/node-result-module';
 declare class Paginate {
     private limit;
     private page;
-    constructor(query: any);
+    constructor(app: App, query: any);
     getLimit(): number;
     getSkip(): number;
     getPage(): number;

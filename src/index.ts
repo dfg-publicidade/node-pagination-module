@@ -1,3 +1,4 @@
+import App from '@dfgpublicidade/node-app-module';
 import Result from '@dfgpublicidade/node-result-module';
 
 const defaultLimit: number = 20;
@@ -8,13 +9,13 @@ class Paginate {
     private limit: number;
     private page: number;
 
-    public constructor(query: any) {
+    public constructor(app: App, query: any) {
         this.limit = query && query._limit && query._limit > 0
-            ? parseInt(query._limit, 10)
+            ? parseInt(query._limit, app.config.api.paginationLimit)
             : defaultLimit;
 
         this.page = query && query._page && query._page > 0
-            ? parseInt(query._page, 10)
+            ? parseInt(query._page, app.config.api.paginationLimit)
             : defaultPage;
 
         if (query && query._nopaginate && query._nopaginate === 'true') {
