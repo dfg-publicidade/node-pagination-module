@@ -11,11 +11,11 @@ class Paginate {
 
     public constructor(app: App, query: any) {
         this.limit = query && query._limit && query._limit > 0
-            ? parseInt(query._limit, app.config.api.paginationLimit)
+            ? parseInt(query._limit, app.config.pagination.limit)
             : defaultLimit;
 
         this.page = query && query._page && query._page > 0
-            ? parseInt(query._page, app.config.api.paginationLimit)
+            ? parseInt(query._page, app.config.pagination.limit)
             : defaultPage;
 
         if (query && query._nopaginate && query._nopaginate === 'true') {
