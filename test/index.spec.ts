@@ -26,7 +26,7 @@ describe('index.ts', (): void => {
         });
     });
 
-    it('constructor', async (): Promise<void> => {
+    it('1. constructor', async (): Promise<void> => {
         const paginate: Paginate = new Paginate(app, {});
 
         const total: number = 40;
@@ -53,7 +53,7 @@ describe('index.ts', (): void => {
         expect(result.content.currentPage).to.be.eq(1);
     });
 
-    it('constructor', async (): Promise<void> => {
+    it('2. constructor', async (): Promise<void> => {
         const paginate: Paginate = new Paginate(app, {
             _limit: 30,
             _skip: 5,
@@ -84,7 +84,7 @@ describe('index.ts', (): void => {
         expect(result.content.currentPage).to.be.eq(2);
     });
 
-    it('constructor', async (): Promise<void> => {
+    it('3. constructor', async (): Promise<void> => {
         const paginate: Paginate = new Paginate(app, {
             _nopaginate: 'true'
         });
