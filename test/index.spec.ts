@@ -27,6 +27,52 @@ describe('index.ts', (): void => {
     });
 
     it('1. constructor', async (): Promise<void> => {
+        expect(() => {
+            new Paginate(undefined, {});
+        }).to.throw('Application was not provided.');
+    });
+
+    it('2. constructor', async (): Promise<void> => {
+        expect(() => {
+            new Paginate({
+                ...app,
+                config: undefined
+            } as App, {});
+        }).to.throw('Pagination config. was not provided.');
+    });
+
+    it('3. constructor', async (): Promise<void> => {
+        const paginate: Paginate = new Paginate({
+            ...app,
+            config: {
+                pagination: {}
+            }
+        } as App, {});
+
+        const total: number = 40;
+
+        expect(paginate).to.exist;
+
+        // eslint-disable-next-line no-magic-numbers
+        expect(paginate.getLimit()).to.be.eq(10);
+        expect(paginate.getSkip()).to.be.eq(0);
+        expect(paginate.getPage()).to.be.eq(1);
+        // eslint-disable-next-line no-magic-numbers
+        expect(paginate.getPages(total)).to.be.eq(4);
+
+        const result: Result = new Result(ResultStatus.SUCCESS, {});
+        paginate.setData(result, total);
+
+        expect(result).to.exist;
+        expect(result.content).to.exist;
+        // eslint-disable-next-line no-magic-numbers
+        expect(result.content.pages).to.be.eq(4);
+        // eslint-disable-next-line no-magic-numbers
+        expect(result.content.itemsPerPage).to.be.eq(10);
+        expect(result.content.currentPage).to.be.eq(1);
+    });
+
+    it('4. constructor', async (): Promise<void> => {
         const paginate: Paginate = new Paginate(app, {});
 
         const total: number = 40;
@@ -41,7 +87,6 @@ describe('index.ts', (): void => {
         expect(paginate.getPages(total)).to.be.eq(2);
 
         const result: Result = new Result(ResultStatus.SUCCESS, {});
-        // eslint-disable-next-line no-magic-numbers
         paginate.setData(result, total);
 
         expect(result).to.exist;
@@ -53,7 +98,7 @@ describe('index.ts', (): void => {
         expect(result.content.currentPage).to.be.eq(1);
     });
 
-    it('2. constructor', async (): Promise<void> => {
+    it('5. constructor', async (): Promise<void> => {
         const paginate: Paginate = new Paginate(app, {
             _limit: 30,
             _skip: 5,
@@ -84,7 +129,7 @@ describe('index.ts', (): void => {
         expect(result.content.currentPage).to.be.eq(2);
     });
 
-    it('3. constructor', async (): Promise<void> => {
+    it('6. constructor', async (): Promise<void> => {
         const paginate: Paginate = new Paginate(app, {
             _nopaginate: 'true'
         });

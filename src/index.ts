@@ -12,7 +12,15 @@ class Paginate {
     private page: number;
 
     public constructor(app: App, query: any) {
+        if (!app) {
+            throw new Error('Application was not provided.');
+        }
+        if (!app.config?.pagination) {
+            throw new Error('Pagination config. was not provided.');
+        }
+        
         defaultLimit = app.config.pagination.limit;
+        defaultLimit = defaultLimit ? defaultLimit : 10;
 
         this.limit = query && query._limit && query._limit > 0
             ? parseInt(query._limit, 10)
