@@ -18,8 +18,9 @@ class Paginate {
         if (!app.config?.pagination) {
             throw new Error('Pagination config. was not provided.');
         }
-        
+
         defaultLimit = app.config.pagination.limit;
+        // eslint-disable-next-line no-magic-numbers
         defaultLimit = defaultLimit ? defaultLimit : 10;
 
         this.limit = query && query._limit && query._limit > 0

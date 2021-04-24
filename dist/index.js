@@ -6,7 +6,16 @@ const maxLimit = 999999;
 const defaultPage = 1;
 class Paginate {
     constructor(app, query) {
+        var _a;
+        if (!app) {
+            throw new Error('Application was not provided.');
+        }
+        if (!((_a = app.config) === null || _a === void 0 ? void 0 : _a.pagination)) {
+            throw new Error('Pagination config. was not provided.');
+        }
         defaultLimit = app.config.pagination.limit;
+        // eslint-disable-next-line no-magic-numbers
+        defaultLimit = defaultLimit ? defaultLimit : 10;
         this.limit = query && query._limit && query._limit > 0
             ? parseInt(query._limit, 10)
             : defaultLimit;
