@@ -27,13 +27,13 @@ describe('index.ts', (): void => {
     });
 
     it('1. constructor', async (): Promise<void> => {
-        expect(() => {
+        expect((): void => {
             new Paginate(undefined, {});
         }).to.throw('Application was not provided.');
     });
 
     it('2. constructor', async (): Promise<void> => {
-        expect(() => {
+        expect((): void => {
             new Paginate({
                 ...app,
                 config: undefined
