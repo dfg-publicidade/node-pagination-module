@@ -20,9 +20,7 @@ describe('index.ts', (): void => {
                 pagination: {
                     limit: 20
                 }
-            },
-            connectionName: undefined,
-            db: undefined
+            }
         });
     });
 
