@@ -153,4 +153,29 @@ describe('index.ts', (): void => {
         expect(result.content.itemsPerPage).to.be.eq(999999);
         expect(result.content.currentPage).to.be.eq(1);
     });
+
+    it('7. constructor', async (): Promise<void> => {
+        const paginate: Paginate = new Paginate(app, {});
+
+        const total: number = 0;
+
+        expect(paginate).to.exist;
+
+        // eslint-disable-next-line no-magic-numbers
+        expect(paginate.getLimit()).to.be.eq(20);
+        expect(paginate.getSkip()).to.be.eq(0);
+        expect(paginate.getPage()).to.be.eq(1);
+        expect(paginate.getPages(total)).to.be.eq(0);
+
+        const result: Result = new Result(ResultStatus.SUCCESS, {});
+        paginate.setData(result, total);
+
+        expect(result).to.exist;
+        expect(result.content).to.exist;
+        // eslint-disable-next-line no-magic-numbers
+        expect(result.content.pages).to.be.eq(1);
+        // eslint-disable-next-line no-magic-numbers
+        expect(result.content.itemsPerPage).to.be.eq(20);
+        expect(result.content.currentPage).to.be.eq(1);
+    });
 });

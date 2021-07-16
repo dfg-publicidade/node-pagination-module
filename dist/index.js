@@ -43,7 +43,7 @@ class Paginate {
         return Math.ceil(total / this.limit);
     }
     setData(result, total) {
-        result.content.pages = this.getPages(total);
+        result.content.pages = total ? this.getPages(total) : 1;
         result.content.itemsPerPage = this.getLimit();
         result.content.currentPage = this.getPage();
     }
