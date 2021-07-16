@@ -173,7 +173,7 @@ describe('index.ts', (): void => {
         expect(result).to.exist;
         expect(result.content).to.exist;
         // eslint-disable-next-line no-magic-numbers
-        expect(result.content.pages).to.be.eq(1);
+        expect(result.content.pages).to.be.eq(0);
         // eslint-disable-next-line no-magic-numbers
         expect(result.content.itemsPerPage).to.be.eq(20);
         expect(result.content.currentPage).to.be.eq(1);
